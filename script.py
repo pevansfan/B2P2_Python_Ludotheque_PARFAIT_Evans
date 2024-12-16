@@ -1,4 +1,4 @@
-from flask import Flask, jsonify  # Importation de Flask pour créer l'application et jsonify pour retourner des réponses JSON
+from flask import Flask, jsonify, redirect, url_for  # Importation de Flask pour créer l'application et jsonify pour retourner des réponses JSON
 import ludo2  # Importation du module contenant les fonctions de récupération des jeux
 
 # Création d'une instance de l'application Flask
@@ -45,6 +45,10 @@ def game_details(game_id):
         return "<p>Jeu non trouvé.</p>"
     # Retourne les détails du jeu en format JSON
     return jsonify(game)
+
+@app.route('/')
+def index():
+    return redirect(url_for('list_games'))
 
 # Point d'entrée principal de l'application
 if __name__ == '__main__':
